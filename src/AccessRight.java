@@ -8,6 +8,7 @@ public class AccessRight {
 	public AccessRight(Policy p) {
 		for(int i = 0; i < p.attributes.size(); i++) {
 			String attrName = p.attributes.get(i);
+//			System.out.println(attrName);
 			int size = p.attributeValues.get(attrName).size();
 			int randomNum = ThreadLocalRandom.current().nextInt(0, size);
 			attributes.put(attrName, p.attributeValues.get(attrName).get(randomNum));

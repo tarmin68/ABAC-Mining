@@ -6,6 +6,6 @@ public class Test {
 		System.out.println();
 		p.printAttributes();
 		System.out.println();
-		p.generatePolicyData(1000);
+		p.generatePolicyData(500);
 	}
 }

@@ -5,6 +5,8 @@ import java.util.Map;
 
 public class Policy {
 	String rulesFileName;
+	String attributeFileName;
+	String attributeValueFileName;
 	String permittedDataFileName;
 	String deniedDataFileName;
 	ArrayList<Rule> rules = new ArrayList<>();
@@ -13,11 +15,15 @@ public class Policy {
 
 	public Policy(String rulesFileName) {
 		this.rulesFileName = rulesFileName;
+		attributeFileName = "attribute" + rulesFileName;
+		attributeValueFileName = "attributevalue" + rulesFileName;
 		permittedDataFileName = "permitted" + rulesFileName;
 		deniedDataFileName = "denied" + rulesFileName;
 		rules = Parser.ruleParser(rulesFileName);
-		getAttributesFromRules();
-		getAttributeValuesFromRules();
+//		getAttributesFromRules();
+		attributes = Parser.attributeParser(attributeFileName);
+		attributeValues = Parser.attributeValueParser(attributeValueFileName);
+//		getAttributeValuesFromRules();
 	}
 
 	public void getAttributesFromRules(){
@@ -85,29 +91,41 @@ public class Policy {
 	public void generatePolicyData(int size) {
 		StringBuilder permittedAR = new StringBuilder();
 		StringBuilder deniedAR = new StringBuilder();
-		
+
 		String attrString = "";
 		for(String attrName : attributes) {
 			attrString += attrName + ",";
 		}
 		permittedAR.append(attrString + "\n");
 		deniedAR.append(attrString + "\n");
-		
-		for(int i = 0; i < size; i++) {
+
+		int[] ruleCounts = new int[rules.size()];
+		int totalPermitCount = 0;
+		int totalDenyCount = 0;
+		while(totalPermitCount < rules.size() * size) {
 			AccessRight ar = new AccessRight(this);
-			if(checkDecision(ar)) {
-				String arString = "";
-				for(String attrName : attributes) {
-					arString += ar.attributes.get(attrName) + ",";
+			int decision = checkDecision(ar);
+			if(decision != -1) {
+				ruleCounts[decision]++;
+				if(ruleCounts[decision] <= size) {
+					totalPermitCount++;
+					System.out.println(decision + " " + ruleCounts[decision]);
+					String arString = "";
+					for(String attrName : attributes) {
+						arString += ar.attributes.get(attrName) + ",";
+					}
+					permittedAR.append(arString.substring(0,arString.length() - 1) + "\n");
 				}
-				permittedAR.append(arString.substring(0,arString.length() - 1) + "\n");
 			}
 			else {
-				String arString = "";
-				for(String attrName : attributes) {
-					arString += ar.attributes.get(attrName) + ",";
+				if(totalDenyCount < rules.size() * size){
+					totalDenyCount++;
+					String arString = "";
+					for(String attrName : attributes) {
+						arString += ar.attributes.get(attrName) + ",";
+					}
+					deniedAR.append(arString.substring(0,arString.length() - 1) + "\n");
 				}
-				deniedAR.append(arString.substring(0,arString.length() - 1) + "\n");
 			}
 		}
 		writeInFile(permittedAR, permittedDataFileName);
@@ -126,16 +144,16 @@ public class Policy {
 		}
 	}
 
-	public boolean checkDecision(AccessRight ar){
-		boolean decision = false;
-		for(Rule r: rules) {
-			if(r.checkRule(ar)) {
-				decision = true;
+	public Integer checkDecision(AccessRight ar){
+		Integer decision = -1;
+		for(int i = 0; i < rules.size(); i++) {
+			if(rules.get(i).checkRule(ar)) {
+				decision = i;
 			}
 		}
 		return decision;
 	}
-	
+
 	public static void writeInFile(StringBuilder data, String fileName){
 		FileWriter fileWriter = null;
 		try {
@@ -147,4 +165,5 @@ public class Policy {
 			e.printStackTrace();
 		}
 	}
+	
 }
