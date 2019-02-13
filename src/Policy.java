@@ -1,3 +1,5 @@
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,15 +17,16 @@ public class Policy {
 
 	public Policy(String rulesFileName) {
 		this.rulesFileName = rulesFileName;
-		attributeFileName = "attribute" + rulesFileName;
-		attributeValueFileName = "attributevalue" + rulesFileName;
+		attributeFileName = "attribute.txt";
+		attributeValueFileName = "attributevalue.txt";
 		permittedDataFileName = "permitted" + rulesFileName;
 		deniedDataFileName = "denied" + rulesFileName;
 		rules = Parser.ruleParser(rulesFileName);
-//		getAttributesFromRules();
 		attributes = Parser.attributeParser(attributeFileName);
 		attributeValues = Parser.attributeValueParser(attributeValueFileName);
-//		getAttributeValuesFromRules();
+
+		//		getAttributesFromRules();
+		//		getAttributeValuesFromRules();
 	}
 
 	public void getAttributesFromRules(){
@@ -103,7 +106,7 @@ public class Policy {
 		int totalPermitCount = 0;
 		int totalDenyCount = 0;
 		while(totalPermitCount < rules.size() * size) {
-			AccessRight ar = new AccessRight(this);
+			AccessRequest ar = new AccessRequest(this);
 			int decision = checkDecision(ar);
 			if(decision != -1) {
 				ruleCounts[decision]++;
@@ -144,7 +147,7 @@ public class Policy {
 		}
 	}
 
-	public Integer checkDecision(AccessRight ar){
+	public Integer checkDecision(AccessRequest ar){
 		Integer decision = -1;
 		for(int i = 0; i < rules.size(); i++) {
 			if(rules.get(i).checkRule(ar)) {
@@ -154,7 +157,7 @@ public class Policy {
 		return decision;
 	}
 
-	public static void writeInFile(StringBuilder data, String fileName){
+	public void writeInFile(StringBuilder data, String fileName){
 		FileWriter fileWriter = null;
 		try {
 			fileWriter = new FileWriter(fileName);
@@ -165,5 +168,89 @@ public class Policy {
 			e.printStackTrace();
 		}
 	}
-	
+
+	public double getFalseNegative(String permittedFileName) {
+		StringBuilder falseNegatives = new StringBuilder();
+
+		String attrString = "";
+		for(String attrName : attributes) {
+			attrString += attrName + ",";
+		}
+		falseNegatives.append(attrString + "\n");
+
+		String line = null;
+		int total = 0;
+		int FNs = 0;
+
+		try {
+			FileReader fileReader = new FileReader(permittedFileName);
+
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			while((line = bufferedReader.readLine()) != null) {
+				total++;
+				AccessRequest ar = new AccessRequest(this, line);
+				int decision = checkDecision(ar);
+				if(decision == -1) {
+					FNs++;
+					ar.printAccessRequest();
+					String arString = "";
+					for(String attrName : attributes) {
+						arString += ar.attributes.get(attrName) + ",";
+					}
+					falseNegatives.append(arString.substring(0,arString.length() - 1) + "\n");
+				}
+			}
+			writeInFile(falseNegatives, "falseNegatives.txt");
+			bufferedReader.close();  
+		}
+		catch(Exception ex) {
+			System.out.println("Unable to open file '" + permittedFileName + "'");
+			System.out.println(ex);
+		}
+		return FNs / (total * 1.0);
+	}
+
+	public double getFalsePositive(String deniedFileName) {
+		StringBuilder falsePositives = new StringBuilder();
+
+		String attrString = "";
+		for(String attrName : attributes) {
+			attrString += attrName + ",";
+		}
+		falsePositives.append(attrString + "\n");
+
+		String line = null;
+		int total = 0;
+		int FPs = 0;
+
+		try {
+			FileReader fileReader = new FileReader(deniedFileName);
+
+			BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+			while((line = bufferedReader.readLine()) != null) {
+				total++;
+				AccessRequest ar = new AccessRequest(this, line);
+				int decision = checkDecision(ar);
+				if(decision != -1) {
+					FPs++;
+					ar.printAccessRequest();
+					String arString = "";
+					for(String attrName : attributes) {
+						arString += ar.attributes.get(attrName) + ",";
+					}
+					falsePositives.append(arString.substring(0,arString.length() - 1) + "\n");
+				}
+			}
+			writeInFile(falsePositives, "falsePositives.txt");
+			bufferedReader.close();  
+		}
+		catch(Exception ex) {
+			System.out.println("Unable to open file '" + deniedFileName + "'");
+			System.out.println(ex);
+		}
+		
+		return FPs / (total * 1.0);
+	}
 }

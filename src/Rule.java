@@ -66,7 +66,7 @@ public class Rule {
 		return ruleString;
 	}
 
-	public boolean checkRule(AccessRight ar) {
+	public boolean checkRule(AccessRequest ar) {
 		for(String attrName : posAttrFil.keySet()) {
 			if(ar.attributes.containsKey(attrName)) {
 				if(!posAttrFil.get(attrName).contains(ar.attributes.get(attrName))) {
