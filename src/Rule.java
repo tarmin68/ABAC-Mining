@@ -134,7 +134,7 @@ public class Rule {
 		return intersectionCount / (unionCount * 1.0);
 	}
 
-	public void prune(Rule r) {
+	public void FNprune(Rule r) {
 		Iterator<Entry<String, String>> posAttrFilIter = this.posAttrFil.entrySet().iterator();
 		while (posAttrFilIter.hasNext()) {
 			Entry<String,String> entry = posAttrFilIter.next();
@@ -168,4 +168,41 @@ public class Rule {
 		}
 	}
 
+	public void FPprune(Rule r) {
+		Iterator<Entry<String, String>> posAttrFilIter = r.posAttrFil.entrySet().iterator();
+		while (posAttrFilIter.hasNext()) {
+			Entry<String,String> entry = posAttrFilIter.next();
+			if(this.posAttrFil.containsKey(entry.getKey()) && this.posAttrFil.get(entry.getKey()).equals(entry.getValue())){
+				posAttrFilIter.remove();
+			}
+		}
+		this.posAttrFil.putAll(r.posAttrFil);
+		
+		Iterator<Entry<String, String>> negAttrFilIter = r.negAttrFil.entrySet().iterator();
+		while (negAttrFilIter.hasNext()) {
+			Entry<String,String> entry = negAttrFilIter.next();
+			if(this.negAttrFil.containsKey(entry.getKey()) && this.negAttrFil.get(entry.getKey()).equals(entry.getValue())){
+				negAttrFilIter.remove();
+			}
+		}
+		this.negAttrFil.putAll(r.negAttrFil);
+		
+		Iterator<Entry<String, String>> posRelCondIter = r.posRelCond.entrySet().iterator();
+		while (posRelCondIter.hasNext()) {
+			Entry<String,String> entry = posRelCondIter.next();
+			if(this.posRelCond.containsKey(entry.getKey()) && this.posRelCond.get(entry.getKey()).equals(entry.getValue())){
+				posRelCondIter.remove();
+			}
+		}
+		this.posRelCond.putAll(r.posRelCond);
+		
+		Iterator<Entry<String, String>> negRelCondIter = r.negRelCond.entrySet().iterator();
+		while (negRelCondIter.hasNext()) {
+			Entry<String,String> entry = negRelCondIter.next();
+			if(this.negRelCond.containsKey(entry.getKey()) && this.negRelCond.get(entry.getKey()).equals(entry.getValue())){
+				negRelCondIter.remove();
+			}
+		}
+		this.negRelCond.putAll(r.negRelCond);
+	}
 }

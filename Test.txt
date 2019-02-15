@@ -1,4 +1,4 @@
-ischair=true,crs!==crstaught,odepartment=cs,action=changescore,position=faculty,type=gradebook
+ischair=true,odepartment=cs,action=changescore,position=faculty,type=gradebook,crs!==crstaught
 crs==crstaught,action=read,position=faculty,type!=roster
 ischair=false,action=read,position!=student,type=transcript
 udepartment=registrar,action=write,type=roster

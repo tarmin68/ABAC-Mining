@@ -1,0 +1,5 @@
+ischair=true,type=gradebook,udepartment=admissions,
+ischair=false,odepartment=admissions,action=read,type=transcript,udepartment=ce,
+ischair=false,odepartment=ee,action=read,position=staff,type=transcript,udepartment=cs,
+ischair=false,odepartment=registrar,action=read,type=transcript,udepartment=ee,
+ischair=true,odepartment=cs,action=changescore,position=faculty,type=gradebook

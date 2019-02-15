@@ -21,8 +21,8 @@ public class Policy {
 		this.rulesFileName = policyName + ".txt";
 		attributeFileName = "attribute.txt";
 		attributeValueFileName = "attributevalue.txt";
-		permittedDataFileName = "permitted" + policyName + ".txt";
-		deniedDataFileName = "denied" + policyName + ".txt";
+		permittedDataFileName = policyName + "Permitted.txt";
+		deniedDataFileName = policyName + "Denied.txt";
 		rules = Parser.ruleParser(rulesFileName);
 		attributes = Parser.attributeParser(attributeFileName);
 		attributeValues = Parser.attributeValueParser(attributeValueFileName);
@@ -271,7 +271,7 @@ public class Policy {
 				System.out.println(this.rules.get(j).getRuleString());
 				System.out.println("similarity = " + this.rules.get(j).calcSimilarity(FNPolicy.rules.get(i)));
 				if(FNPolicy.rules.get(i).calcSimilarity(this.rules.get(j)) > 0.5) {
-					this.rules.get(j).prune(FNPolicy.rules.get(i));
+					this.rules.get(j).FNprune(FNPolicy.rules.get(i));
 					hasSimilar = true;
 				}
 			}
@@ -281,8 +281,19 @@ public class Policy {
 		}
 	}
 
-	public void prunePolicyOnFPs(Policy p) {
-
+	public void prunePolicyOnFPs(Policy FPPolicy) {
+		for(int i = 0; i < FPPolicy.rules.size(); i++) {
+			for(int j = 0; j < this.rules.size(); j++) {
+				System.out.println(FPPolicy.rules.get(i).getRuleString());
+				System.out.println(this.rules.get(j).getRuleString());
+				System.out.println("similarity = " + this.rules.get(j).calcSimilarity(FPPolicy.rules.get(i)));
+				double firstSim = FPPolicy.rules.get(i).calcSimilarity(this.rules.get(j));
+				double secondSim = this.rules.get(j).calcSimilarity(FPPolicy.rules.get(i));
+				if( firstSim >= 0.5 || secondSim >= 0.5) {
+					this.rules.get(j).FPprune(FPPolicy.rules.get(i));
+				}
+			}
+		}
 	}
 	
 }

@@ -1,0 +1,10 @@
+type=gradebook,action=readmyscores,crstaken==crs
+type=gradebook,action=addscore,crstaught==crs
+position=faculty,type=gradebook,action=changescore,crstaught==crs
+udepartment=registrar,type=roster,action=read
+position=faculty,type=roster,action=read,crstaught==crs
+type=transcript,action=read,position=student
+ischair=true,type=transcript,action=read,udepartment==odepartment
+odepartment=registrar,type=transcript,action=read
+type=application,action=checkstatus,position=student
+udepartment=admissions,type=application,action=read
