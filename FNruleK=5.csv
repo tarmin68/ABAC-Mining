@@ -1,0 +1,5 @@
+ischair=true,crs=ee601,type=gradebook,udepartment=admissions,crstaught=ee601,crstaken=cs101
+ischair=false,crs=cs101,odepartment=admissions,action=read,type=transcript,udepartment=ce,crstaught=cs101
+ischair=false,crs=cs601,odepartment=ee,action=read,position=staff,type=transcript,udepartment=cs,crstaught=ee101,crstaken=ee601
+ischair=false,crs=ee101,odepartment=registrar,action=read,type=transcript,udepartment=ee,crstaught=cs602,crstaken=ee101
+ischair=true,crs=ee101,odepartment=cs,action=changescore,position=faculty,type=gradebook
