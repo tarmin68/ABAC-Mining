@@ -1,36 +1,21 @@
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map.Entry;
+
+import com.sun.javafx.collections.MappingChange.Map;
 
 public class Rule {
-	HashMap<String, ArrayList<String>> posAttrFil = new HashMap<>();
-	HashMap<String, ArrayList<String>> negAttrFil = new HashMap<>();
+	HashMap<String, String> posAttrFil = new HashMap<>();
+	HashMap<String, String> negAttrFil = new HashMap<>();
 	HashMap<String, String> posRelCond = new HashMap<>();
 	HashMap<String, String> negRelCond = new HashMap<>();
 
 	public void addAttributeFilters(boolean positive, String attrName, String attrValue) {
 		if(positive) {
-			if(posAttrFil.containsKey(attrName)) {
-				ArrayList<String> attrValues = posAttrFil.get(attrName);
-				attrValues.add(attrValue);
-				posAttrFil.put(attrName, attrValues);
-			}
-			else {
-				ArrayList<String> attrValues = new ArrayList<>();
-				attrValues.add(attrValue);
-				posAttrFil.put(attrName, attrValues);
-			}
+			posAttrFil.put(attrName, attrValue);
 		}
 		else {
-			if(negAttrFil.containsKey(attrName)) {
-				ArrayList<String> attrValues = negAttrFil.get(attrName);
-				attrValues.add(attrValue);
-				negAttrFil.put(attrName, attrValues);
-			}
-			else {
-				ArrayList<String> attrValues = new ArrayList<>();
-				attrValues.add(attrValue);
-				negAttrFil.put(attrName, attrValues);
-			}
+			negAttrFil.put(attrName, attrValue);
 		}
 	}
 
@@ -46,14 +31,10 @@ public class Rule {
 	public String getRuleString() {
 		String ruleString = "";
 		for(String attrName : posAttrFil.keySet()) {
-			for(String attValue : posAttrFil.get(attrName)) {
-				ruleString += attrName + "=" + attValue + ",";
-			}
+			ruleString += attrName + "=" + posAttrFil.get(attrName) + ",";
 		}
 		for(String attrName : negAttrFil.keySet()) {
-			for(String attValue : negAttrFil.get(attrName)) {
-				ruleString += attrName + "!=" + attValue + ",";
-			}
+			ruleString += attrName + "!=" + negAttrFil.get(attrName) + ",";
 		}
 		for(String firstAttr : posRelCond.keySet()) {
 			ruleString += firstAttr + "==" + posRelCond.get(firstAttr) + ",";
@@ -62,14 +43,16 @@ public class Rule {
 			ruleString += firstAttr + "!==" + negRelCond.get(firstAttr) + ",";
 		}
 
-		ruleString = ruleString.substring(0, ruleString.length() - 1);
+		if(ruleString.length() > 0) {
+			ruleString = ruleString.substring(0, ruleString.length() - 1);
+		}
 		return ruleString;
 	}
 
 	public boolean checkRule(AccessRequest ar) {
 		for(String attrName : posAttrFil.keySet()) {
 			if(ar.attributes.containsKey(attrName)) {
-				if(!posAttrFil.get(attrName).contains(ar.attributes.get(attrName))) {
+				if(!posAttrFil.get(attrName).equals(ar.attributes.get(attrName))) {
 					return false;
 				}
 			}
@@ -79,7 +62,7 @@ public class Rule {
 		}
 		for(String attrName : negAttrFil.keySet()) {
 			if(ar.attributes.containsKey(attrName)) {
-				if(negAttrFil.get(attrName).contains(ar.attributes.get(attrName))) {
+				if(negAttrFil.get(attrName).equals(ar.attributes.get(attrName))) {
 					return false;
 				}
 			}
@@ -105,4 +88,104 @@ public class Rule {
 		}
 		return true;
 	}
+
+	public double calcSimilarity(Rule r) {
+		int unionCount = 0;
+		int intersectionCount = 0;
+
+		for(String attrName : this.posAttrFil.keySet()) {
+			if(r.posAttrFil.keySet().contains(attrName)) {
+				intersectionCount++;
+			}
+			else {
+				unionCount++;
+			}
+		}
+		for(String attrName : r.posAttrFil.keySet()) {
+			if(!this.posAttrFil.keySet().contains(attrName)) {
+				unionCount++;
+			}
+		}
+
+		for(String attrName : this.negAttrFil.keySet()) {
+			if(r.negAttrFil.keySet().contains(attrName)) {
+				intersectionCount++;
+			}
+			else {
+				unionCount++;
+			}
+		}
+		for(String attrName : r.negAttrFil.keySet()) {
+			if(!this.negAttrFil.keySet().contains(attrName)) {
+				unionCount++;
+			}
+		}
+
+		for(String attrName : this.posRelCond.keySet()) {
+			if(r.posRelCond.keySet().contains(attrName)) {
+				intersectionCount++;
+			}
+			else {
+				unionCount++;
+			}
+		}
+		for(String attrName : r.posRelCond.keySet()) {
+			if(!this.posRelCond.keySet().contains(attrName)) {
+				unionCount++;
+			}
+		}
+
+		for(String attrName : this.negRelCond.keySet()) {
+			if(r.negRelCond.keySet().contains(attrName)) {
+				intersectionCount++;
+			}
+			else {
+				unionCount++;
+			}
+		}
+		for(String attrName : r.negRelCond.keySet()) {
+			if(!this.negRelCond.keySet().contains(attrName)) {
+				unionCount++;
+			}
+		}
+
+		unionCount =+ intersectionCount;
+
+		return intersectionCount / (unionCount * 1.0);
+	}
+
+	public void prune(Rule r) {
+		Iterator<Entry<String, String>> posAttrFilIter = this.posAttrFil.entrySet().iterator();
+		while (posAttrFilIter.hasNext()) {
+			Entry<String,String> entry = posAttrFilIter.next();
+			if(!r.posAttrFil.containsKey(entry.getKey()) || (r.posAttrFil.containsKey(entry.getKey()) && !r.posAttrFil.get(entry.getKey()).equals(entry.getValue()))){
+				posAttrFilIter.remove();
+			}
+		}
+
+		Iterator<Entry<String, String>> negAttrFilIter = this.negAttrFil.entrySet().iterator();
+		while (negAttrFilIter.hasNext()) {
+			Entry<String,String> entry = negAttrFilIter.next();
+			if(!r.negAttrFil.containsKey(entry.getKey()) || (r.negAttrFil.containsKey(entry.getKey()) && r.negAttrFil.get(entry.getKey()).equals(entry.getValue()))){
+				negAttrFilIter.remove();
+			}
+		}
+
+		Iterator<Entry<String, String>> posRelCondIter = this.posRelCond.entrySet().iterator();
+		while (posRelCondIter.hasNext()) {
+			Entry<String,String> entry = posRelCondIter.next();
+			if(!r.posRelCond.containsKey(entry.getKey()) || (r.posRelCond.containsKey(entry.getKey()) && r.posRelCond.get(entry.getKey()).equals(entry.getValue()))){
+				posRelCondIter.remove();
+			}
+		}
+
+		Iterator<Entry<String, String>> negRelCondIter = this.negRelCond.entrySet().iterator();
+		while (negRelCondIter.hasNext()) {
+			Entry<String,String> entry = negRelCondIter.next();
+			if(!r.negRelCond.containsKey(entry.getKey()) || (r.negRelCond.containsKey(entry.getKey()) && r.negRelCond.get(entry.getKey()).equals(entry.getValue()))){
+				negRelCondIter.remove();
+			}
+		}
+	}
+
 }

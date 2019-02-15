@@ -67,24 +67,24 @@ public class Policy {
 			for(String attrName : rules.get(i).posAttrFil.keySet()) {
 				if(attributeValues.containsKey(attrName)) {
 					ArrayList<String> values = attributeValues.get(attrName);
-					values.addAll(rules.get(i).posAttrFil.get(attrName));
+					values.add(rules.get(i).posAttrFil.get(attrName));
 					attributeValues.put(attrName, values);
 				}
 				else {
 					ArrayList<String> values = new ArrayList<String>();
-					values.addAll(rules.get(i).posAttrFil.get(attrName));
+					values.add(rules.get(i).posAttrFil.get(attrName));
 					attributeValues.put(attrName, values);
 				}
 			}
 			for(String attrName : rules.get(i).negAttrFil.keySet()) {
 				if(attributeValues.containsKey(attrName)) {
 					ArrayList<String> values = attributeValues.get(attrName);
-					values.addAll(rules.get(i).negAttrFil.get(attrName));
+					values.add(rules.get(i).negAttrFil.get(attrName));
 					attributeValues.put(attrName, values);
 				}
 				else {
 					ArrayList<String> values = new ArrayList<>();
-					values.addAll(rules.get(i).negAttrFil.get(attrName));
+					values.add(rules.get(i).negAttrFil.get(attrName));
 					attributeValues.put(attrName, values);
 				}
 			}
@@ -193,7 +193,6 @@ public class Policy {
 				int decision = checkDecision(ar);
 				if(decision == -1) {
 					FNs++;
-					ar.printAccessRequest();
 					String arString = "";
 					for(String attrName : attributes) {
 						arString += ar.attributes.get(attrName) + ",";
@@ -235,7 +234,6 @@ public class Policy {
 				int decision = checkDecision(ar);
 				if(decision != -1) {
 					FPs++;
-					ar.printAccessRequest();
 					String arString = "";
 					for(String attrName : attributes) {
 						arString += ar.attributes.get(attrName) + ",";
@@ -250,7 +248,27 @@ public class Policy {
 			System.out.println("Unable to open file '" + deniedFileName + "'");
 			System.out.println(ex);
 		}
-		
+
 		return FPs / (total * 1.0);
 	}
+
+	public void prunePolicyOnFNs(Policy FNPolicy) {
+		for(int i = 0; i < FNPolicy.rules.size(); i++) {
+			boolean hasSimilar = false;
+			for(int j = 0; j < this.rules.size(); j++) {
+				if(FNPolicy.rules.get(i).calcSimilarity(this.rules.get(j)) > 0.5) {
+					this.rules.get(j).prune(FNPolicy.rules.get(i));
+					hasSimilar = true;
+				}
+			}
+			if(!hasSimilar) {
+				this.rules.add(FNPolicy.rules.get(i));
+			}
+		}
+	}
+
+	public void prunePolicyOnFPs(Policy p) {
+
+	}
+	
 }
