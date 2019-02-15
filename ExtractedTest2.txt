@@ -1,0 +1,14 @@
+ischair=true,odepartment=cs,action=changescore,position=faculty,type=gradebook
+ischair=true,action=changescore,position=faculty,type=gradebook
+ischair=false,crstaught=cs101,action=checkstatus,position=faculty,type=application,type!=roster,crs==crstaught
+ischair=false,crstaught=cs101,action=checkstatus,position=student,type=application,type!=roster,crs==crstaught
+ischair=false,action=read,type=transcript
+udepartment=registrar,action=write,type=roster,action!=read
+action=read,type=transcript
+ischair=true,action=read,crstaught!=ee601,udepartment==odepartment,crs==crstaken,action!==type
+action=checkstatus,position=student,type=application
+udepartment=admissions,action=setstatus,type=application,udepartment!==odepartment
+action=read,type=transcript
+crs=cs101,action=readmyscores,type=gradebook
+action=addscore,crstaken=cs602,type!=gradebook
+odepartment=ee,action=read,position=staff,type=transcript

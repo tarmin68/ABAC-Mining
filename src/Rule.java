@@ -94,62 +94,42 @@ public class Rule {
 		int intersectionCount = 0;
 
 		for(String attrName : this.posAttrFil.keySet()) {
-			if(r.posAttrFil.keySet().contains(attrName)) {
+			if(r.posAttrFil.keySet().contains(attrName) && this.posAttrFil.get(attrName).equals(r.posAttrFil.get(attrName))) {
 				intersectionCount++;
 			}
 			else {
-				unionCount++;
-			}
-		}
-		for(String attrName : r.posAttrFil.keySet()) {
-			if(!this.posAttrFil.keySet().contains(attrName)) {
 				unionCount++;
 			}
 		}
 
 		for(String attrName : this.negAttrFil.keySet()) {
-			if(r.negAttrFil.keySet().contains(attrName)) {
+			if(r.negAttrFil.keySet().contains(attrName) && this.negAttrFil.get(attrName).equals(r.negAttrFil.get(attrName))) {
 				intersectionCount++;
 			}
 			else {
-				unionCount++;
-			}
-		}
-		for(String attrName : r.negAttrFil.keySet()) {
-			if(!this.negAttrFil.keySet().contains(attrName)) {
 				unionCount++;
 			}
 		}
 
 		for(String attrName : this.posRelCond.keySet()) {
-			if(r.posRelCond.keySet().contains(attrName)) {
+			if(r.posRelCond.keySet().contains(attrName) && this.posRelCond.get(attrName).equals(r.posRelCond.get(attrName))) {
 				intersectionCount++;
 			}
 			else {
-				unionCount++;
-			}
-		}
-		for(String attrName : r.posRelCond.keySet()) {
-			if(!this.posRelCond.keySet().contains(attrName)) {
 				unionCount++;
 			}
 		}
 
 		for(String attrName : this.negRelCond.keySet()) {
-			if(r.negRelCond.keySet().contains(attrName)) {
+			if(r.negRelCond.keySet().contains(attrName) && this.negRelCond.get(attrName).equals(r.negRelCond.get(attrName))) {
 				intersectionCount++;
 			}
 			else {
 				unionCount++;
 			}
 		}
-		for(String attrName : r.negRelCond.keySet()) {
-			if(!this.negRelCond.keySet().contains(attrName)) {
-				unionCount++;
-			}
-		}
 
-		unionCount =+ intersectionCount;
+		unionCount += intersectionCount;
 
 		return intersectionCount / (unionCount * 1.0);
 	}

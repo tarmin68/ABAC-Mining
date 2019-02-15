@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Policy {
+	String policyName;
 	String rulesFileName;
 	String attributeFileName;
 	String attributeValueFileName;
@@ -15,12 +16,13 @@ public class Policy {
 	ArrayList<String> attributes = new ArrayList<String>(); 
 	Map<String, ArrayList<String>> attributeValues = new HashMap<>();
 
-	public Policy(String rulesFileName) {
-		this.rulesFileName = rulesFileName;
+	public Policy(String policyName) {
+		this.policyName = policyName;
+		this.rulesFileName = policyName + ".txt";
 		attributeFileName = "attribute.txt";
 		attributeValueFileName = "attributevalue.txt";
-		permittedDataFileName = "permitted" + rulesFileName;
-		deniedDataFileName = "denied" + rulesFileName;
+		permittedDataFileName = "permitted" + policyName + ".txt";
+		deniedDataFileName = "denied" + policyName + ".txt";
 		rules = Parser.ruleParser(rulesFileName);
 		attributes = Parser.attributeParser(attributeFileName);
 		attributeValues = Parser.attributeValueParser(attributeValueFileName);
@@ -136,9 +138,18 @@ public class Policy {
 	}
 
 	public void printPolicy() {
-		for(Rule r : rules) {
-			System.out.println(r.getRuleString());
+		for(int i = 0; i < rules.size(); i++) {
+			System.out.println("Rule number" + i);
+			System.out.println(rules.get(i).getRuleString());
 		}
+	}
+	
+	public void printPolicyInFile(String policyFileName) {
+		StringBuilder policyText = new StringBuilder();
+		for(int i = 0; i < rules.size(); i++) {
+			policyText.append(rules.get(i).getRuleString() + "\n");
+		}
+		writeInFile(policyText, policyFileName);
 	}
 
 	public void printAttributes() {
@@ -200,7 +211,7 @@ public class Policy {
 					falseNegatives.append(arString.substring(0,arString.length() - 1) + "\n");
 				}
 			}
-			writeInFile(falseNegatives, "falseNegatives.txt");
+			writeInFile(falseNegatives, policyName + "falseNegatives.txt");
 			bufferedReader.close();  
 		}
 		catch(Exception ex) {
@@ -241,7 +252,7 @@ public class Policy {
 					falsePositives.append(arString.substring(0,arString.length() - 1) + "\n");
 				}
 			}
-			writeInFile(falsePositives, "falsePositives.txt");
+			writeInFile(falsePositives, policyName + "falsePositives.txt");
 			bufferedReader.close();  
 		}
 		catch(Exception ex) {
@@ -256,6 +267,9 @@ public class Policy {
 		for(int i = 0; i < FNPolicy.rules.size(); i++) {
 			boolean hasSimilar = false;
 			for(int j = 0; j < this.rules.size(); j++) {
+				System.out.println(FNPolicy.rules.get(i).getRuleString());
+				System.out.println(this.rules.get(j).getRuleString());
+				System.out.println("similarity = " + this.rules.get(j).calcSimilarity(FNPolicy.rules.get(i)));
 				if(FNPolicy.rules.get(i).calcSimilarity(this.rules.get(j)) > 0.5) {
 					this.rules.get(j).prune(FNPolicy.rules.get(i));
 					hasSimilar = true;

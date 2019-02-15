@@ -1,8 +1,8 @@
 
 public class Test {
 	public static void main(String[] args) {
-//		testGenerateFN_FPRecords("ExtractedTest.txt");
-		refineBasedonFNs("ExtractedTest.txt", "FNTest.txt");
+		testGenerateFN_FPRecords("ExtractedTest2");
+//		refineBasedonFNs("ExtractedTest.txt", "FNTest.txt");
 	}
 
 	public static void testPolicyRandomDataGeneration() {
@@ -46,7 +46,7 @@ public class Test {
 		System.out.println();
 		System.out.println("Printing FN policy: ************************");
 		Policy FNPolicy = new Policy(FNPolicyFileName);
-		extractedPolicy.printPolicy();
+		FNPolicy.printPolicy();
 		System.out.println();
 		extractedPolicy.prunePolicyOnFNs(FNPolicy);
 		
@@ -71,5 +71,7 @@ public class Test {
 		double precision = (TPs * 1.0) / (TPs + FPs);
 		Double fMeasure = (2 * precision * recall) / (precision + recall);
 		System.out.println("fMeasure = " + fMeasure);
+		
+		extractedPolicy.printPolicyInFile("TestTest.txt");
 	}
 }

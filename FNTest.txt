@@ -1,9 +1,3 @@
 ischair=true,odepartment=cs,action=changescore,position=faculty,type=gradebook
-crs==crstaught,action=read,position=faculty
-ischair=false,action=read,position!=student,type=transcript,action!==odepartment
-udepartment==odepartment,action=read,position=staff,type=transcript
-udepartment==odepartment,action=read,position=staff,type=transcript
-udepartment=admissions,action=setstatus,type=application,udepartment==odepartment
-udepartment=admissions,action=setstatus,type=admissions,udepartment==odepartment
-udepartment=registrar,action=read,type=transcript
-udepartment=cs,ischair=true,action=changescore,position=faculty,type=gradebook
+ischair=false,action=read,type=transcript
+odepartment=ee,action=read,position=staff,type=transcript
