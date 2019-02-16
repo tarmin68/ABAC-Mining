@@ -3,8 +3,6 @@ type=gradebook,action=addscore,crstaken==crstaught
 position=faculty,type=gradebook,action=changescore,crstaken==crs
 udepartment=registrar,type=roster,action=read
 position=faculty,type=roster,action=read,crstaken==crs
-type=transcript,action=read,position=student
 ischair=true,type=transcript,action=read
-odepartment=registrar,type=transcript,action=read
 type=application,action=checkstatus,position=student
 udepartment=admissions,type=application,action=read

@@ -24,7 +24,7 @@ public class Policy {
 		attributeValueFileName = "attributevalue.txt";
 		permittedDataFileName = policyName + "Permitted.txt";
 		deniedDataFileName = policyName + "Denied.txt";
-		XuFileName = policyName + "Xu.txt";
+		XuFileName = policyName + "XuData.txt";
 		rules = Parser.ruleParser(rulesFileName);
 		attributes = Parser.attributeParser(attributeFileName);
 		attributeValues = Parser.attributeValueParser(attributeValueFileName);
@@ -139,7 +139,7 @@ public class Policy {
 		}
 		writeInFile(permittedAR, permittedDataFileName);
 		writeInFile(deniedAR, deniedDataFileName);
-		writeInFile(XuString, XuFileName);
+//		writeInFile(XuString, XuFileName);
 	}
 
 	public void printPolicy() {
