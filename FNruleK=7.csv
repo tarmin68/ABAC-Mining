@@ -1,5 +1,0 @@
-ischair=false,crs=ee101,action=read,odepartment=registrar,udepartment=ce,crstaught=cs602
-action=read,type=transcript,,,,
-ischair=false,action=read,position=advisor,udepartment=ce,crs!==crstaught,crstaught==crstaken
-ischair=true,type=gradebook,odepartment=cs,,,
-crstaught==crs,odepartment=admission,,,,

@@ -244,11 +244,13 @@ public class Policy {
 
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
+			int[] ruleCounts = new int[rules.size()];
 			while((line = bufferedReader.readLine()) != null) {
 				total++;
 				AccessRequest ar = new AccessRequest(this, line);
 				int decision = checkDecision(ar);
 				if(decision != -1) {
+					ruleCounts[decision]++;
 					FPs++;
 					String arString = "";
 					for(String attrName : attributes) {
@@ -256,6 +258,9 @@ public class Policy {
 					}
 					falsePositives.append(arString.substring(0,arString.length() - 1) + "\n");
 				}
+			}
+			for(int i = 0; i < rules.size(); i++) {
+				System.out.println("rule " + i + " FP = " + ruleCounts[i]);
 			}
 			writeInFile(falsePositives, policyName + "falsePositives.txt");
 			bufferedReader.close();  

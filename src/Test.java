@@ -2,9 +2,9 @@
 public class Test {
 	public static void main(String[] args) {
 //		testPolicyRandomDataGeneration("UniversityPositive/universityRulesPositive");
-		testGenerateFN_FPRecords("UniversityPositive/step1ExtractedRules");
+//		testGenerateFN_FPRecords("UniversityPositive/step1ExtractedRules");
 //		refineBasedonFNs("ExtractedTest1", "FNTestk3");
-//		refineBasedonFPs("ExtractedTest2", "FPTestk4");
+		refineBasedonFPs("ExtractedTest2", "FP extracted rule");
 	}
 
 	public static void testPolicyRandomDataGeneration(String policyName) {

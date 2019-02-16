@@ -1,3 +1,0 @@
-ischair=true,crs=cs601,odepartment=ee,position=advisor,udepartment=ce,crstaught=cs601,crstaken=ee101,udepartment==odepartment
-crs=ee101,odepartment=admission,position=faculty,udepartment=ce,crstaught=cs602,crstaken=ee101
-odepartment=ce,position=student,udepartment=cs,crstaken=ee101,crstaken=ee601

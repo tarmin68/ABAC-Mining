@@ -1,3 +1,0 @@
-position=faculty,udepartment=ce,crstaught=cs602 
-ischair=true,crs=cs601,odepartment=ee,position=advisor,udepartment=ce,crstaught=cs601,odepartment==udepartment
-ischair=na,crs=cs602,position=advisor,udepartment=ee,crstaken=cs601 

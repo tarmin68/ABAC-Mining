@@ -1,3 +1,0 @@
-ischair=true,odepartment=cs,action=changescore,position=faculty,type=gradebook
-ischair=false,action=read,type=transcript
-odepartment=ee,action=read,position=staff,type=transcript
