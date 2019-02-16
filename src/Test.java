@@ -1,8 +1,8 @@
 
 public class Test {
 	public static void main(String[] args) {
-		testPolicyRandomDataGeneration("UniversityDataset2/universityRulesPositive");
-//		testGenerateFN_FPRecords("UniversityPositive/step1ExtractedRules");
+//		testPolicyRandomDataGeneration("UniversityDataset2/universityRulesPositive");
+		testGenerateFN_FPRecords("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/permitted.txt", "UniversityDataset2/denied.txt");
 //		refineBasedonFNs("ExtractedTest1", "FNTestk3");
 //		refineBasedonFPs("ExtractedTest2", "FP extracted rule");
 	}
@@ -16,18 +16,18 @@ public class Test {
 		p.generatePolicyData(100);
 	}
 
-	public static void testGenerateFN_FPRecords(String extractedPolicyFileName) {
+	public static void testGenerateFN_FPRecords(String extractedPolicyFileName, String permittedFileName, String deniedFileName) {
 		System.out.println("Printing the policy: ************************");
 		Policy p = new Policy(extractedPolicyFileName);
 		p.printPolicy();
 		System.out.println("End of policy: ************************");
 		System.out.println();
 		System.out.println("Printing False Negative Records");
-		double FNs = p.getFalseNegative("permittedtest.txt");
+		double FNs = p.getFalseNegative(permittedFileName);
 		double TPs = 1 - FNs;
 
 		System.out.println("Printing False Positive Records");
-		double FPs = p.getFalsePositive("deniedtest.txt");
+		double FPs = p.getFalsePositive(deniedFileName);
 		double TNs = 1 - FPs;
 
 		System.out.println("FNs = " + String.format( "%.2f", FNs )  + " TPs = " 
