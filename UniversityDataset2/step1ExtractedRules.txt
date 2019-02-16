@@ -1,0 +1,10 @@
+action!=read,type=gradebook,crs==crstaught,crs==crstaken
+action!=read,type=gradebook,crs==crstaught,
+ischair=true,odepartment=cs,action=read,type=transcript,udepartment=cs,odepartment==udepartment
+action=read,position=student,crs!==crstaught
+action=read,type=roster,udepartment=registrar,
+position=student,type=application,udepartment=admissions,
+ischair=true,action=read,type=transcript,udepartment=ce,odepartment==udepartment
+crs=cs601,position=faculty,type=roster,crstaught=cs601,crs==crstaught
+action!=read,action=readmyscores,type=gradebook,crs==crstaken
+ischair=true,odepartment=admissions,action=read,udepartment=admissions,odepartment==udepartment
