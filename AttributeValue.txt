@@ -1,0 +1,9 @@
+ischair true,false,na
+crs cs601,ee101,cs602,ee601,cs101
+odepartment cs,ee,ce,registrar,admissions
+action changescore,read,write,checkstatus,setstatus,readmyscores,addscore
+position faculty,student,staff,advisor
+type gradebook,transcript,roster,application
+udepartment cs,ee,ce,registrar,admissions
+crstaught cs601,ee101,cs602,ee601,cs101
+crstaken cs601,ee101,cs602,ee601,cs101

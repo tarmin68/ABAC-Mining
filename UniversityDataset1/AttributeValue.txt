@@ -1,9 +1,0 @@
-ischair true,false
-crs cs101,cs601,cs602,ee101,ee601,ee602
-odepartment cs,ee,registrar,admissions
-action readMyScores,addScore,readScore,changeScore,assignGrade,read,write,checkStatus,setStatus
-position applicant,student,faculty,staff
-type application,gradebook,roster,transcript
-udepartment cs,ee,registrar,admissions
-crstaught cs101,cs601,cs602,ee101,ee601,ee602
-crstaken cs101,cs601,cs602,ee101,ee601,ee602

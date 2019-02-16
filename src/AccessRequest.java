@@ -31,11 +31,9 @@ public class AccessRequest {
 		System.out.println(accessRightString);
 	}
 	
-	public String getXuString(Policy p) {
-		Random rn = new Random();
-		int randomNum = rn.nextInt();
-		String userString = "userAttrib(user" + randomNum + ",";
-		String resourceString = "resourceAttrib(res" + randomNum + ",";
+	public String getXuString(Policy p, int num) {
+		String userString = "userAttrib(user" + num + ",";
+		String resourceString = "resourceAttrib(res" + num + ",";
 		
 		for(int i = 0; i < p.attributes.size(); i++) {
 			String attrName = p.attributes.get(i);

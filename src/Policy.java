@@ -123,7 +123,7 @@ public class Policy {
 						arString += ar.attributes.get(attrName) + ",";
 					}
 					permittedAR.append(arString.substring(0,arString.length() - 1) + "\n");
-					XuString.append(ar.getXuString(this) + "\n");
+					XuString.append(ar.getXuString(this, totalPermitCount) + "\n");
 				}
 			}
 			else {
@@ -137,8 +137,8 @@ public class Policy {
 				}
 			}
 		}
-//		writeInFile(permittedAR, permittedDataFileName);
-//		writeInFile(deniedAR, deniedDataFileName);
+		writeInFile(permittedAR, permittedDataFileName);
+		writeInFile(deniedAR, deniedDataFileName);
 		writeInFile(XuString, XuFileName);
 	}
 
