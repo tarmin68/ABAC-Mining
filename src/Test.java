@@ -2,7 +2,7 @@
 public class Test {
 	public static void main(String[] args) {
 //		testPolicyRandomDataGeneration("UniversityDataset2/universityRulesPositive");
-		testGenerateFN_FPRecords("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/permitted.txt", "UniversityDataset2/denied.txt");
+		testGenerateFN_FPRecords("UniversityDataset3/step1ExtractedRules", "UniversityDataset3/permittedtest.txt", "UniversityDataset3/deniedtest.txt");
 //		refineBasedonFNs("ExtractedTest1", "FNTestk3");
 //		refineBasedonFPs("ExtractedTest2", "FP extracted rule");
 	}
