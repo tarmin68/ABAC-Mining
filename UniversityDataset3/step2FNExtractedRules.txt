@@ -1,0 +1,4 @@
+ischair=true,action=changescore,position=faculty,type=gradebook,crs==crstaught,crs==crstaken,odepartment==udepartment,crstaught==crstaken
+crs=cs602,action=read,position=faculty,crstaught=cs602,
+crs=cs601,action=read,crstaught=cs601,
+ischair=true,crs=ee101,position=faculty,type=gradebook,udepartment=cs,crstaught=ee101
