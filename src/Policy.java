@@ -12,6 +12,7 @@ public class Policy {
 	String attributeValueFileName;
 	String permittedDataFileName;
 	String deniedDataFileName;
+	String XuFileName;
 	ArrayList<Rule> rules = new ArrayList<>();
 	ArrayList<String> attributes = new ArrayList<String>(); 
 	Map<String, ArrayList<String>> attributeValues = new HashMap<>();
@@ -23,6 +24,7 @@ public class Policy {
 		attributeValueFileName = "attributevalue.txt";
 		permittedDataFileName = policyName + "Permitted.txt";
 		deniedDataFileName = policyName + "Denied.txt";
+		XuFileName = policyName + "Xu.txt";
 		rules = Parser.ruleParser(rulesFileName);
 		attributes = Parser.attributeParser(attributeFileName);
 		attributeValues = Parser.attributeValueParser(attributeValueFileName);
@@ -96,6 +98,7 @@ public class Policy {
 	public void generatePolicyData(int size) {
 		StringBuilder permittedAR = new StringBuilder();
 		StringBuilder deniedAR = new StringBuilder();
+		StringBuilder XuString = new StringBuilder();
 
 		String attrString = "";
 		for(String attrName : attributes) {
@@ -120,6 +123,7 @@ public class Policy {
 						arString += ar.attributes.get(attrName) + ",";
 					}
 					permittedAR.append(arString.substring(0,arString.length() - 1) + "\n");
+					XuString.append(ar.getXuString(this) + "\n");
 				}
 			}
 			else {
@@ -133,8 +137,9 @@ public class Policy {
 				}
 			}
 		}
-		writeInFile(permittedAR, permittedDataFileName);
-		writeInFile(deniedAR, deniedDataFileName);
+//		writeInFile(permittedAR, permittedDataFileName);
+//		writeInFile(deniedAR, deniedDataFileName);
+		writeInFile(XuString, XuFileName);
 	}
 
 	public void printPolicy() {

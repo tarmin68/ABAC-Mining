@@ -1,8 +1,8 @@
 
 public class Test {
 	public static void main(String[] args) {
-		testPolicyRandomDataGeneration("UniversityPositive/universityRulesPositive");
-//		testGenerateFN_FPRecords("ExtractedTest2");
+//		testPolicyRandomDataGeneration("UniversityPositive/universityRulesPositive");
+		testGenerateFN_FPRecords("UniversityPositive/step1ExtractedRules");
 //		refineBasedonFNs("ExtractedTest1", "FNTestk3");
 //		refineBasedonFPs("ExtractedTest2", "FPTestk4");
 	}
@@ -13,7 +13,7 @@ public class Test {
 		System.out.println();
 		p.printAttributes();
 		System.out.println();
-		p.generatePolicyData(5000);
+		p.generatePolicyData(500);
 	}
 
 	public static void testGenerateFN_FPRecords(String extractedPolicyFileName) {
