@@ -1,0 +1,5 @@
+type!= hritem,type=hr,uteam=carteam1,uteam==otreatingteam
+position=doctor,oward=carward
+action=addnote,oward=oncward,uward=carward,opatient=oncpat2,uagentfor=carpat2
+position=nurse,type!= hritem,type=hr,uward=carward,uteam=carteam2,uteam==otreatingteam
+action=additem,oward!= carward,oward=oncward,uward=oncward,topic=cardiology,specialty=cardiology
