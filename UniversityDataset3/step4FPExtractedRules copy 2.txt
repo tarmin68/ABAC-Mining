@@ -1,0 +1,4 @@
+odepartment=admissions,type=roster,udepartment=admissions
+action=read,crstaught=cs601
+crs=cs101,udepartment=cs,crstaught=cs101
+ischair=true,type=transcript,udepartment=cs
