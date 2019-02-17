@@ -17,11 +17,11 @@ public class Policy {
 	ArrayList<String> attributes = new ArrayList<String>(); 
 	Map<String, ArrayList<String>> attributeValues = new HashMap<>();
 
-	public Policy(String policyName) {
+	public Policy(String policyName, String attributeFileName, String attributeValueFileName) {
 		this.policyName = policyName;
 		this.rulesFileName = policyName + ".txt";
-		attributeFileName = "attribute.txt";
-		attributeValueFileName = "attributevalue.txt";
+		attributeFileName = attributeFileName;
+		attributeValueFileName = attributeValueFileName;
 		permittedDataFileName = policyName + "Permitted.txt";
 		deniedDataFileName = policyName + "Denied.txt";
 		XuFileName = policyName + "XuData.txt";

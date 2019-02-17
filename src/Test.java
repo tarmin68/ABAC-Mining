@@ -1,19 +1,19 @@
 
 public class Test {
 	public static void main(String[] args) {
-//		testPolicyRandomDataGeneration("UniversityDataset2/DataSet2Rules");
+		testPolicyRandomDataGeneration("HealthCareDatset1/healthCareRules", "HealthCareDatset1/Attribute.txt", "HealthCareDatset1/AttributeValue.txt");
 		
-		testGenerateFN_FPRecords("UniversityDataset2/step2ExtractedRulesAfterFNRefine", "UniversityDataset2/DataSet2RulesPermitted.txt", "UniversityDataset2/DataSet2RulesDenied.txt");
+//		testGenerateFN_FPRecords("UniversityDataset2/step2ExtractedRulesAfterFNRefine", "UniversityDataset2/DataSet2RulesPermitted.txt", "UniversityDataset2/DataSet2RulesDenied.txt");
 //		testGenerateFN_FPRecords("UniversityDataset3/step1ExtractedRulesAfterFNRefine", "UniversityDataset3/permittedtest.txt", "UniversityDataset3/deniedtest.txt");
 		
 //		refineBasedonFNs("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/step2FNExtractedRules", "UniversityDataset3/permittedtest.txt" , "UniversityDataset3/deniedtest.txt");
-		refineBasedonFNs("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/step2FNExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt" , "UniversityDataset2/DataSet2RulesDenied.txt");
+//		refineBasedonFNs("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/step2FNExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt" , "UniversityDataset2/DataSet2RulesDenied.txt");
 		
 //		refineBasedonFPs("UniversityDataset2/step2ExtractedRulesAfterFNRefine", "UniversityDataset2/step3FPExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt" , "UniversityDataset2/DataSet2RulesDenied.txt");
 	}
 
-	public static void testPolicyRandomDataGeneration(String policyName) {
-		Policy p = new Policy(policyName);
+	public static void testPolicyRandomDataGeneration(String policyName, String attributeFileName, String attributeValueFileName) {
+		Policy p = new Policy(policyName, attributeFileName, attributeValueFileName);
 		p.printPolicy();
 		System.out.println();
 		p.printAttributes();
@@ -21,9 +21,9 @@ public class Test {
 		p.generatePolicyData(1000);
 	}
 
-	public static void testGenerateFN_FPRecords(String extractedPolicyFileName, String permittedFileName, String deniedFileName) {
+	public static void testGenerateFN_FPRecords(String extractedPolicyFileName, String permittedFileName, String deniedFileName, String attributeFileName, String attributeValueFileName) {
 		System.out.println("Printing the policy: ************************");
-		Policy p = new Policy(extractedPolicyFileName);
+		Policy p = new Policy(extractedPolicyFileName, attributeFileName, attributeValueFileName);
 		p.printPolicy();
 		System.out.println("End of policy: ************************");
 		System.out.println();
@@ -46,13 +46,13 @@ public class Test {
 		System.out.println("fMeasure = " + fMeasure);
 	}
 	
-	public static void refineBasedonFNs(String extractedPolicyFileName, String FNPolicyFileName, String permittedFileName, String deniedFileName) {
+	public static void refineBasedonFNs(String extractedPolicyFileName, String FNPolicyFileName, String permittedFileName, String deniedFileName, String attributeFileName, String attributeValueFileName) {
 		System.out.println("Printing extracted policy: ************************");
-		Policy extractedPolicy = new Policy(extractedPolicyFileName);
+		Policy extractedPolicy = new Policy(extractedPolicyFileName, attributeFileName, attributeValueFileName);
 		extractedPolicy.printPolicy();
 		System.out.println();
 		System.out.println("Printing FN policy: ************************");
-		Policy FNPolicy = new Policy(FNPolicyFileName);
+		Policy FNPolicy = new Policy(FNPolicyFileName, attributeFileName, attributeValueFileName);
 		FNPolicy.printPolicy();
 		System.out.println();
 		extractedPolicy.prunePolicyOnFNs(FNPolicy);
@@ -82,13 +82,13 @@ public class Test {
 		extractedPolicy.printPolicyInFile(extractedPolicyFileName + "AfterFNRefine.txt");
 	}
 	
-	public static void refineBasedonFPs(String extractedPolicyFileName, String FPPolicyFileName, String permittedFileName, String deniedFileName) {
+	public static void refineBasedonFPs(String extractedPolicyFileName, String FPPolicyFileName, String permittedFileName, String deniedFileName, String attributeFileName, String attributeValueFileName) {
 		System.out.println("Printing extracted policy: ************************");
-		Policy extractedPolicy = new Policy(extractedPolicyFileName);
+		Policy extractedPolicy = new Policy(extractedPolicyFileName, attributeFileName, attributeValueFileName);
 		extractedPolicy.printPolicy();
 		System.out.println();
 		System.out.println("Printing FP policy: ************************");
-		Policy FPPolicy = new Policy(FPPolicyFileName);
+		Policy FPPolicy = new Policy(FPPolicyFileName, attributeFileName, attributeValueFileName);
 		FPPolicy.printPolicy();
 		System.out.println();
 		extractedPolicy.prunePolicyOnFPs(FPPolicy);
