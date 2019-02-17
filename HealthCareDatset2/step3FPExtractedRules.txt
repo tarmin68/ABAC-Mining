@@ -1,4 +1,5 @@
-type!=hritem,type=hr
-action=addnote,type!=hritem,type=hr
-position=nurse,position!=doctor,type!=hritem,type=hr
-type!=hritem,type=hr,uward=carward,uward!=oncward
+type!=hritem,type=hr,opatient=carpat1
+action=addnote,type!=hritem,type=hr,uward=carward
+position=nurse,position!=doctor,type!=hritem,type=hr,uward=oncward,topic=cardiology
+action=read,type!=hritem,type=hr,oward=carward,uward=carward,uward!=oncward,topic=cardiology
+uward=oncward,topic=note
