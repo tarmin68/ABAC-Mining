@@ -1,0 +1,12 @@
+action=read,type=roster,udepartment=registrar,
+action!=read,action=changescore,position=faculty,type=gradebook,crs==crstaken
+ischair=true,ischair!=false,action=read,type!=gradebook,type=transcript,crs!==crstaken
+action=read,type!=gradebook,type=roster,
+crs=cs601,action=read,position=faculty,type=roster,crstaken=cs601,crs==crstaken
+position!=faculty,position=student,type!=gradebook,type=application,udepartment=admissions,crs!==crstaken
+crs=ee601,action=changescore,position=faculty,type=gradebook,crstaken=ee601,crs==crstaken
+crs=ee601,action=read,position=faculty,type=roster,crstaken=ee601,crs==crstaken
+ischair=na,action=read,type=application,udepartment=admissions,crs!==crstaken
+crs=ee101,action!=read,action=changescore,position=faculty,type=gradebook,crstaken=ee101,crs==crstaken
+crs=cs601,action!=read,action=readmyscores,type=gradebook,crstaken=cs601,crs==crstaken
+action=addscore,type=gradebook,crstaken==crstaught
