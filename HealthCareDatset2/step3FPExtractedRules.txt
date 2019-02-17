@@ -1,0 +1,4 @@
+type!=hritem,type=hr
+action=addnote,type!=hritem,type=hr
+position=nurse,position!=doctor,type!=hritem,type=hr
+type!=hritem,type=hr,uward=carward,uward!=oncward
