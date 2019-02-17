@@ -1,0 +1,5 @@
+action=read,udepartment=admissions,
+crs=cs101,action=readmyscores,type=gradebook,crstaken=cs101,crs==crstaken
+action=checkstatus,position=student,type=application,
+crs=ee601,action=readmyscores,type=gradebook,crstaken=ee601,crs==crstaken
+action=checkstatus,position=student,type=application,
