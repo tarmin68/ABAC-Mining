@@ -1,5 +1,5 @@
-action=additemposition=doctortype!=hritemtype=hruteam=oncteam1otreatingteam=oncteam1oward==uward,uagentfor==opatien
-action=addnoteuser=carpat1uagentfor==opatient,opatient==user
-action=additemtype!=hritemtype=hruteam==otreatingteam
-action=addnotetype=hropatient=carpat1uagentfor=carpat1uagentfor==opatien,uteam==otreatingteam
-action=additemtype!=hritemtype=hrspecialty=nursinguagentfor=carpat2uagentfor==opatien
+action=additem,position=doctor,type!=hritem,type=hr,uteam=oncteam1,otreatingteam=oncteam1,oward==uward,uagentfor==opatien
+action=addnote,user=carpat1,uagentfor==opatient,opatient==user
+action=additem,type!=hritem,type=hr,uteam==otreatingteam
+action=addnote,type=hr,opatient=carpat1,uagentfor=carpat1,uagentfor==opatien,uteam==otreatingteam
+action=additem,type!=hritem,type=hr,specialty=nursing,uagentfor=carpat2,uagentfor==opatien
