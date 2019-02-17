@@ -1,0 +1,17 @@
+action=read,opatient==uagentfor,oward==uward
+uteam=carteam2,otreatingteam=carteam2
+oward=oncward,action=read,topic=nursing,position=doctor
+uteam=oncteam2,otreatingteam=oncteam2
+opatient=carpat2,oward=carward,action=read,uward=carward,topic=cardiology,type=hr,type!=hritem,uward!=oncward
+opatient=carpat2,uteam=oncteam2,oauthor=oncdoc2
+action=read,type=hritem
+uteam=carteam2,action=read,topic=nursing,otreatingteam=carteam2
+opatient=oncpat1,uagentfor=oncpat1
+opatient=oncpat2,uagentfor=oncpat2,action=addnote
+specialty=cardiology,oward=oncward
+uagentfor=carpat2,otreatingteam=carteam2
+opatient=carpat1,oward=carward,action=addnote,uward=carward,topic=cardiology,type=hr,type!=hritem,uward!=oncward
+opatient=carpat1,user=carpat1,type!=hritem
+uteam=carteam1,otreatingteam=carteam1
+uward=oncward,topic=note,position=nurse,type=hr,type!=hritem,position!=doctor
+action=addnote,uward=carward,user=carpat2
