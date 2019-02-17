@@ -1,0 +1,9 @@
+action=additem,position!=nurse,type=hr,oward==uward
+action=additem,type=hr,uteam!==otreatingteam
+action=addnote,type!=hr,opatient==user
+action=addnote,type=hr,opatient==uagentfor
+action=read,type=hritem,oauthor==user
+topic=nursing,action=read,position=nurse,type=hritem,oward==uward
+action=read,type=hritem,uteam==otreatingteam,topic==specialty
+topic=note,action=read,type=hritem,uteam==otreatingteam,opatient==user
+topic!=note,action=read,type=hritem,opatient==uagentfor

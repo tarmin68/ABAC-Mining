@@ -1,1 +1,0 @@
-ischair,crs,odepartment,action,position,type,udepartment,crstaught,crstaken
