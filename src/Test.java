@@ -2,8 +2,12 @@
 public class Test {
 	public static void main(String[] args) {
 //		testPolicyRandomDataGeneration("UniversityDataset2/DataSet2Rules");
-//		testGenerateFN_FPRecords("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt", "UniversityDataset2/DataSet2RulesDenied.txt");
-//		refineBasedonFNs("UniversityDataset3/step1ExtractedRules", "UniversityDataset3/step2FNExtractedRules");
+		
+		testGenerateFN_FPRecords("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt", "UniversityDataset2/DataSet2RulesDenied.txt");
+//		testGenerateFN_FPRecords("UniversityDataset3/step1ExtractedRulesAfterFNRefine", "UniversityDataset3/permittedtest.txt", "UniversityDataset3/deniedtest.txt");
+		
+//		refineBasedonFNs("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/step2FNExtractedRules", "UniversityDataset3/permittedtest.txt" , "UniversityDataset3/deniedtest.txt");
+		refineBasedonFNs("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/step2FNExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt" , "UniversityDataset2/DataSet2RulesDenied.txt");
 //		refineBasedonFPs("ExtractedTest2", "FP extracted rule");
 	}
 
@@ -74,7 +78,7 @@ public class Test {
 		Double fMeasure = (2 * precision * recall) / (precision + recall);
 		System.out.println("fMeasure = " + fMeasure);
 		
-		extractedPolicy.printPolicyInFile("TestTest.txt");
+		extractedPolicy.printPolicyInFile(extractedPolicyFileName + "AfterFNRefine.txt");
 	}
 	
 	public static void refineBasedonFPs(String extractedPolicyFileName, String FPPolicyFileName) {
