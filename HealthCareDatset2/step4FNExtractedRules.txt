@@ -1,0 +1,5 @@
+action=additemposition=doctortype!=hritemtype=hruteam=oncteam1otreatingteam=oncteam1oward==uward,uagentfor==opatien
+action=addnoteuser=carpat1uagentfor==opatient,opatient==user
+action=additemtype!=hritemtype=hruteam==otreatingteam
+action=addnotetype=hropatient=carpat1uagentfor=carpat1uagentfor==opatien,uteam==otreatingteam
+action=additemtype!=hritemtype=hrspecialty=nursinguagentfor=carpat2uagentfor==opatien
