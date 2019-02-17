@@ -1,7 +1,6 @@
 action=addnote,type!=hritem,type=hr,opatient=oncpat2,uagentfor=oncpat2 
 action=additem,type!=hritem,type=hr 
 action=addnote,uward=oncward,user=carpat2,opatient==user
-action=addnote,type!=hritem,type=hr,otreatingteam=carteam2,opatient=carpat1,uagentfor=carpat1,opatient==uagentfor,opatient==uagentfor
-action=additem,position=doctor,type!=hritem,type=hr,oward=carward,opatient==uagentfor
-action=addnote,opatient=oncpat2,user=oncpat2,opatient==user
-action=addnote,type!=hritem,type=hr,oward=carward,uward=oncward,opatient=carpat2,uagentfor=carpat2,opatient==user
+action=addnote,type!=hritem,type=hr,uagentfor=carpat1,opatient==uagentfor,opatient==uagentfor
+action=addnote,opatient=oncpat2,user=oncpat2
+action=addnote,type!=hritem,type=hr,uward=oncward,opatient=carpat2,uagentfor=carpat2
