@@ -3,7 +3,7 @@ public class Test {
 	public static void main(String[] args) {
 //		testPolicyRandomDataGeneration("HealthCareDatset2/healthCareRules", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
 		
-		testGenerateFN_FPRecords("HealthCareDatset2/step4ExtractedRuleAfterFNRefine", "HealthCareDatset2/healthCareRulesPermitted.txt", "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
+		testGenerateFN_FPRecords("HealthCareDatset2/step5ExtractedRuleAfterFPRefine", "HealthCareDatset2/healthCareRulesPermitted.txt", "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
 		
 //		testGenerateFN_FPRecords("UniversityDataset2/step2ExtractedRulesAfterFNRefine", "UniversityDataset2/DataSet2RulesPermitted.txt", "UniversityDataset2/DataSet2RulesDenied.txt");
 		
@@ -18,7 +18,7 @@ public class Test {
 		
 //		refineBasedonFPs("UniversityDataset3/step3ExtractedRulesAfterFNRefine", "UniversityDataset3/step4FPExtractedRules", "UniversityDataset3/permittedtest.txt" , "UniversityDataset3/deniedtest.txt", "UniversityDataset3/Attribute.txt", "UniversityDataset3/AttributeValue.txt");
 		
-//		refineBasedonFPs("HealthCareDatset2/step2ExtractedRulesAfterFNRefine", "HealthCareDatset2/step3FPExtractedRules", "HealthCareDatset2/healthCareRulesPermitted.txt" , "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
+//		refineBasedonFPs("HealthCareDatset2/step4ExtractedRuleAfterFNRefine", "HealthCareDatset2/step5FPExtractedRules", "HealthCareDatset2/healthCareRulesPermitted.txt" , "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
 	}
 
 	public static void testPolicyRandomDataGeneration(String policyName, String attributeFileName, String attributeValueFileName) {
