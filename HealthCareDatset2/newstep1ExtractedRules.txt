@@ -1,4 +1,3 @@
-
 action=additem,type!=hritem,type=hr,opatient!==user
 uteam=carteam1,otreatingteam=carteam1
 uteam=carteam2,otreatingteam=carteam2,opatient=oncpat2,user=oncpat2
