@@ -1,10 +1,12 @@
-action=read,oward=carward,oward==uward,opatient==uagentfor
+action=read,oward==uward,opatient==uagentfor
 uteam=carteam2,otreatingteam=carteam2
-action=read,position=nurse,type=hritem,uward=oncward,topic=nursing
-action=read,oward=carward,opatient=oncpat1
-action=addnote,user=oncpat1
-action=read,uteam=oncteam2,otreatingteam=oncteam2
-action=read,oward=carward,uward=carward,otreatingteam=carteam2,oauthor=oncnurse1
-action=read,uteam=oncteam2,opatient=carpat2,oauthor=oncdoc2,specialty=cardiology
-action=read,position=nurse,position != doctor,type=hritem,uward != carward,uward=oncward,uteam=oncteam2,otreatingteam=oncteam2,topic=nursing,specialty=note
-action=read,position=nurse,uteam=carteam2,otreatingteam=carteam2,topic=nursing
+action=read,position=nurse,oward=oncward,topic=nursing,position=doctor
+uteam=oncteam2,otreatingteam=oncteam2
+action=read,opatient=carpat2
+uteam=oncteam2,opatient=carpat2,oauthor=oncdoc2
+action=read,position=nurse,position!=doctor,type=hritem,uward!=carward,uward=oncward,otreatingteam=oncteam2,topic=nursing
+action=read,uteam=carteam2,otreatingteam=carteam2,topic=nursing
+opatient=oncpat1,uagentfor=oncpat1
+action=addnote,opatient=oncpat2,uagentfor=oncpat2
+oward=carward,oward=oncward,specialty=cardiology
+otreatingteam=carteam2,uagentfor=carpat2
