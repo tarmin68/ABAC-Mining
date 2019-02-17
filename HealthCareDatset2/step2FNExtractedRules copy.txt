@@ -1,0 +1,8 @@
+action!=read,action=additem,type!=hritem,type=hr
+opatient=carpat1,user=carpat1
+uteam=carteam1,otreatingteam=carteam1
+action!=read,action=additem,type!=hritem,type=hr
+action!=read,action=addnote,type!=hritem,type=hr,opatient=carpat1,uagentfor=carpat1
+action=addnote,user=carpat2
+action=read,type=hritem,type!=hr
+action!=read,action=additem,type!=hritem,type=hr,otreatingteam=carteam1
