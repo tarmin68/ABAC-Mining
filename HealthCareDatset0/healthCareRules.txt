@@ -1,0 +1,9 @@
+action=additem,role=nurse,type=hr,oward=oncward,uward=oncward
+action=additem,type=hr,team=oncteam1,treatingteam=oncteam1
+action=addnote,type=hr,patient=oncpat2,user=oncpat2
+action=addnote,type=hr,patient=oncpat1,agentfor=oncpat1
+action=read,type=hritem,author=carnurse1,user=carnurse1
+topic=nursing,action=read,role=nurse,type=hritem,oward=carward,uward=carward
+action=read,type=hritem,team=carteam1,treatingteam=carteam1,topic=cardiology,specialty=cardiology
+topic=note,action=read,type=hritem,team=carteam2,treatingteam=carteam2,patient=carpat1,user=carpat1
+topic=note,action=read,type=hritem,patient=oncpat2,agentfor=oncpat2

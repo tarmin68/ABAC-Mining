@@ -1,0 +1,23 @@
+action=read,opatient==uagentfor,oward==uward
+uteam=carteam2,uward=carward,position=nurse,type=hr,otreatingteam=carteam2,type!= hritem,uteam==otreatingteam
+oward=carward,action=read,topic=nursing,position=doctor
+uteam=oncteam2,otreatingteam=oncteam2
+opatient=carpat2,oward=carward,action=read,uward=carward,topic=cardiology,type=hr,uward!=oncward,type!=hritem
+opatient=carpat2,uteam=oncteam2,oauthor=oncdoc2
+action=read,type=hritem
+uteam=carteam2,action=read,topic=nursing,otreatingteam=carteam2
+opatient=oncpat1,uagentfor=oncpat1
+opatient=oncpat2,action=addnote
+uagentfor=carpat2,specialty=cardiology,oward=oncward,uward=oncward,action=additem,topic=cardiology,oward!= carward
+uagentfor=carpat2,uward=carward,otreatingteam=carteam2
+action=addnote,type=hr
+opatient=carpat1,user=carpat1,type!=hritem
+uteam=carteam1,uward=carward,position=nurse,type=hr,otreatingteam=carteam1,type!= hritem,uteam==otreatingteam
+uward=carward,topic=note,position=nurse,type=hr,position!=doctor,type!=hritem
+action=addnote,uward=carward,user=carpat2
+action=additem,type=hr,type!= hritem,uteam==otreatingteam
+action=addnote,user=carpat1,opatient==user,uagentfor==opatient
+uagentfor=carpat1,action=addnote,type=hr,type!= hritem
+action=additem
+action=addnote,uward=oncward,user=carpat2,opatient==user
+opatient=carpat2,uagentfor=carpat2,action=addnote,uward=oncward,type=hr,type!=hritem

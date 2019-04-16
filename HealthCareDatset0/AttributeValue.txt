@@ -1,0 +1,13 @@
+action additem,addnote,read,?
+role nurse,doctor,?
+type hritem,hr,?
+oward oncward,carward,?
+uward oncward,carward,?
+team oncteam1,oncteam2,carteam1,carteam2,?
+treatingteam oncteam1,oncteam2,carteam1,carteam2,?
+patient oncpat1,oncpat2,carpat1,carpat2,?
+author oncnurse1,oncnurse2,carnurse1,carnurse2,oncdoc1,oncdoc2,?
+user oncnurse1,oncnurse2,carnurse1,carnurse2,oncdoc1,oncdoc2,oncpat1,oncpat2,carpat1,carpat2,?
+topic note,nursing,oncology,cardiology,?
+specialty note,nursing,oncology,cardiology,?
+agentfor oncpat1,oncpat2,carpat1,carpat2,?

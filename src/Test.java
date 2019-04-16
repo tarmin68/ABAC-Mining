@@ -1,9 +1,9 @@
 
 public class Test {
 	public static void main(String[] args) {
-//		testPolicyRandomDataGeneration("HealthCareDatset2/healthCareRules", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
+		testPolicyRandomDataGeneration("HealthCareDatset0/healthCareRules", "HealthCareDatset0/Attribute.txt", "HealthCareDatset0/AttributeValue.txt");
 		
-		testGenerateFN_FPRecords("HealthCareDatset2/step5ExtractedRuleAfterFPRefine", "HealthCareDatset2/healthCareRulesPermitted.txt", "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
+//		testGenerateFN_FPRecords("HealthCareDatset2/step5ExtractedRuleAfterFPRefine", "HealthCareDatset2/healthCareRulesPermitted.txt", "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
 		
 //		testGenerateFN_FPRecords("UniversityDataset2/step2ExtractedRulesAfterFNRefine", "UniversityDataset2/DataSet2RulesPermitted.txt", "UniversityDataset2/DataSet2RulesDenied.txt");
 		
@@ -12,7 +12,7 @@ public class Test {
 //		refineBasedonFNs("UniversityDataset3/step2ExtractedRulesAfterFNRefine", "UniversityDataset3/step3FNExtractedRules", "UniversityDataset3/permittedtest.txt" , "UniversityDataset3/deniedtest.txt", "UniversityDataset3/Attribute.txt", "UniversityDataset3/AttributeValue.txt");
 //		refineBasedonFNs("UniversityDataset2/step1ExtractedRules", "UniversityDataset2/step2FNExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt" , "UniversityDataset2/DataSet2RulesDenied.txt");
 	
-//		refineBasedonFNs("HealthCareDatset2/step3ExtractedRuleFPRefine", "HealthCareDatset2/step4FNExtractedRules", "HealthCareDatset2/healthCareRulesPermitted.txt" , "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
+//		refineBasedonFNs("HealthCareDatset2/step5ExtractedRuleAfterFPRefine", "HealthCareDatset2/step6FNExtractedRules", "HealthCareDatset2/healthCareRulesPermitted.txt" , "HealthCareDatset2/healthCareRulesDenied.txt", "HealthCareDatset2/Attribute.txt", "HealthCareDatset2/AttributeValue.txt");
 		
 //		refineBasedonFPs("UniversityDataset2/step2ExtractedRulesAfterFNRefine", "UniversityDataset2/step3FPExtractedRules", "UniversityDataset2/DataSet2RulesPermitted.txt" , "UniversityDataset2/DataSet2RulesDenied.txt");
 		
